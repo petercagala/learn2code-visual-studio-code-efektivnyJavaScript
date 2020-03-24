@@ -9,18 +9,47 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>async/defer, bro</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- PRELOAD SEKCIA -->
+         <!-- Namiesto <script> pouzi <link> -->
+        <!-- <script src="./js/very-very-impotatnt.js" defer></script> -->
+        <link rel="preload" href="./img/palino.png" as="image">
+        <link rel="preload" href="./js/very-very-impotatnt.js" as="script">
+
+        <!-- crossorigin musim pridat, ak stahujem nieco z externeho servera.
+        !!! avsak, pri fontoch musim dat crossorigin vzdy, aj ked su na
+         mojom vlastnom disku -->
+        <!-- <link rel="preload" href="font.woff" as="font" crossorigin> -->
+
+
         <link rel="stylesheet" href="./css/style.css">
 
         <!--Je super dat js kod na koniec, alebo takto do head, ale s defer-->
         <script src="./js/app.js" defer></script>
-        <!-- <script src="./js/app.js"></script> -->
+
+       
     </head>
     <body>
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
         
+        <!-- Nemusi ho stahovat, lebo sme si ho priortne stiahli cez <link> rel="preload" -->
         <img src="./img/palino.png" class="palino" alt="palino">
+
+        <!-- <script src="./js/very-very-impotatnt.js"> -->
+            <!-- Script viem odpalit priamo z kodu aj pod nejakou podmienkou -->
+            <script>
+                if(true) {
+                    let createElementScript = document.createElement('script');
+                createElementScript.src = './js/very-very-impotatnt.js';
+
+                // vytvoreny script element necham vlozit do kodu
+                document.body.appendChild(createElementScript);
+                }
+            </script>
+
+        </script>
 
         <script>
             console.log("Hello");
