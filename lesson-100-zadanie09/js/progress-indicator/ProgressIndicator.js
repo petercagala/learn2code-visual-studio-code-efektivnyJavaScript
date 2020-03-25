@@ -2,17 +2,19 @@ class ProgressIndicator {
 
     PROGRESS_INDICATOR_POSITON = 2133;
 
+    debounceTimer;
+
     /**
      * spustíš po načítaní stránky alebo resize okna
      */
     recalculate(pageYOffset) {
-        clearTimeout(debounceTimer);
-        debounceTimer = setTimeout(() => {
+        clearTimeout(this.debounceTimer);
+        this.debounceTimer = setTimeout(() => {
             // tu by bol naozaj nejaky AJAXovy request, ktory by odoslal na server poziadavku na ulozenie pozicie
             console.log("Position started storing in DB");
     
             // po kazdom scrolle simulujem volanie servera
-            this.setProgressIndicatorPossition();
+            this.setProgressIndicatorPossition(pageYOffset);
         }, 1000);
     
        // Nastavime pocet pixelov o ktore som sa odscrolloval od vrchu stranky
@@ -56,6 +58,20 @@ class ProgressIndicator {
         console.log("Progress indicator position is:" + this.PROGRESS_INDICATOR_POSITON);
 
         return  this.PROGRESS_INDICATOR_POSITON;
+    }
+
+    saveInputValue(inputValue) {
+        let start = Date.now();
+        let stopTime = Math.floor(Math.random() * 10) + 10;
+    
+        /**
+         * simulacia AJAX-oveho volania
+         */
+        while((Date.now() - start) < stopTime) {
+            // sleep
+        }
+    
+        console.log("Input value is saved as: " + inputValue);       
     }
 
 }
