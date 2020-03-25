@@ -1,5 +1,7 @@
 'use strict';
 
+let debounceTimer;
+
 const progressBar = document.querySelector('progress');
 // Dlzka celeho dokumenu - dlzka viditelnej casti stranky v 
 // mojom okne prehliadaca
@@ -10,13 +12,20 @@ progressBar.max = calculateProgressBarMax();
  * tak sa chytam objektu window
  */
 window.addEventListener('scroll', function scrollEvent(event) {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(() => {
+        // tu by bol naozaj nejaky AJAXovy request, ktory by odoslal na server poziadavku na ulozenie pozicie
+        console.log("Position started storing in DB");
+
+        // po kazdom scrolle simulujem volanie servera
+        heavyCoding();
+    }, 1000);
 
    // Nastavime pocet pixelov o ktore som sa odscrolloval od vrchu stranky
    progressBar.value = window.pageYOffset;
 //    console.log(window.pageYOffset);
 
-    // po kazdom scrolle simulujem volanie servera
-    heavyCoding();
+    
 });
 
 window.addEventListener('resize', function resizeEvent() {
