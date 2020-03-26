@@ -18,7 +18,7 @@ class ProgressIndicator {
         }, 1000);
     
        // Nastavime pocet pixelov o ktore som sa odscrolloval od vrchu stranky
-       progressBar.value = pageYOffset;
+    //    progressBar.value = pageYOffset;
 
         console.log(pageYOffset);
     }
@@ -62,7 +62,7 @@ class ProgressIndicator {
 
     saveInputValue(inputValue) {
         let start = Date.now();
-        let stopTime = Math.floor(Math.random() * 10) + 10;
+        let stopTime = Math.floor(Math.random() * 200) + 200;
     
         /**
          * simulacia AJAX-oveho volania

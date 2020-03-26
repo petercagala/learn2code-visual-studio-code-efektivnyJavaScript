@@ -20,7 +20,13 @@
     <body>
         
         <!-- value: hodnota medzi 0 a max, ta na ktorej momentalne sme -->
-        <progress max="700" value="0"></progress>
+        <!-- progress element nahradim obicajnym div s classami progress better, bude to lepsie ohladom vykonu, presunie sa 
+        zodpovednost za vykreslovanie z prehliadaca na graficku kartu -->
+        <!-- <progress max="700" value="0"></progress> 
+        Nastavim sirku div elementu na 0% a potom po kazdom jednom scrolle vypocitam, kolko percent zo stranky som prescrolloval
+        a na tlko percent nastavim sirku tomu divu
+        -->
+        <div class="progress better"></div>
 
         <br/>
         <br/>

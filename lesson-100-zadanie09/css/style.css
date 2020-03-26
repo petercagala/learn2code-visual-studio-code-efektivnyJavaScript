@@ -20,3 +20,21 @@ progress {
 input {
     position: fixed;
 }
+
+.progress {
+    width: 0%; 
+
+    height: 32px;
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    background-image: 
+    -webkit-linear-gradient(-45deg, transparent 33%, rgba(0, 0, 0, .1) 33%, rgba(0,0, 0, .1) 66%, transparent 66%),
+    -webkit-linear-gradient(top,rgba(255, 255, 255, .20), rgba(0, 0, 0, .20)),
+    -webkit-linear-gradient(left,rgb(0, 238, 255), rgb(255, 0, 234));
+
+    border-radius: 2px;
+    background-size: 63px 36px, 100% 100%, 100% 100%;
+
+}
