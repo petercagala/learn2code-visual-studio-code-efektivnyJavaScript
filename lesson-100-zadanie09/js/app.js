@@ -4,12 +4,13 @@ var progressIndicator = new ProgressIndicator();
 
 const input = document.querySelector('input');
 
-const progressBar = document.querySelector('.progress'); // tento krat chcem element s classom progress
+const progressBarSmart = document.querySelector('.progress'); // tento krat chcem element s classom progress
+const progressBarShit = document.querySelector('progress');
 // Dlzka celeho dokumenu - dlzka viditelnej casti stranky v 
 // mojom okne prehliadaca
-// progressBar.max = progressIndicator.calculateProgressBarMax(document);
+progressBarShit.max = progressIndicator.calculateProgressBarMax(document);
 let documentHeight = progressIndicator.calculateProgressBarMax(document);
-let percentScrolled;
+let ratioProgressBar;
 
 var keyCounter = 0;
 
@@ -19,31 +20,33 @@ var keyCounter = 0;
  * tak sa chytam objektu window
  */
 window.addEventListener('scroll', function scrollEvent(event) {
-    percentScrolled = (window.pageYOffset / documentHeight) * 100;
+    ratioProgressBar = (window.pageYOffset / documentHeight);
 
-    console.log(documentHeight, window.pageYOffset, Math.round(percentScrolled) + '%');
+    console.log(documentHeight, window.pageYOffset, Math.round(ratioProgressBar * 100) + '%');
 
     // Nastav percentualnu sirku progress baru
-    progressBar.style.width = percentScrolled + "%";
+    progressBarShit.style.width = (ratioProgressBar * 100) + "%";
+    //ale teraz cez tansform, aby sme sli cez graficku kartu, super pre optimalizaciu
+    progressBarSmart.style.transform = `scaleX(${ratioProgressBar})`;
 
     //AJAX
-    progressIndicator.recalculate(window.pageYOffset);
+     progressIndicator.recalculate(window.pageYOffset);
 });
 
 /**
  * Pri nacitani stranky sa spusti metoda recalculate(), ktora bude akoze volat databazu, aby sa 
  * text zobrazil na tej pozicii progress baru ako naposledy
  */
-window.addEventListener('load', (event) => {
-    let progressIndicatorPossition = progressIndicator.getProgressIndicatorPossition();
-    console.log("Stranka bola nacitana s poziciou:" + progressIndicatorPossition);
+// window.addEventListener('load', (event) => {
+//     let progressIndicatorPossition = progressIndicator.getProgressIndicatorPossition();
+//     console.log("Stranka bola nacitana s poziciou:" + progressIndicatorPossition);
 
-    // Nastavime progress bar possition
-    progressBar.value = progressIndicatorPossition;
+//     // Nastavime progress bar possition
+//     progressBar.value = progressIndicatorPossition;
 
-    // Nastavime konkretnu poziciu window.pageYOffset
-    window.scrollTo(0, progressIndicatorPossition);
-});
+//     // Nastavime konkretnu poziciu window.pageYOffset
+//     window.scrollTo(0, progressIndicatorPossition);
+// });
 
 
 

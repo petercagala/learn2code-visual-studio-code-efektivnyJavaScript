@@ -22,10 +22,14 @@
         <!-- value: hodnota medzi 0 a max, ta na ktorej momentalne sme -->
         <!-- progress element nahradim obicajnym div s classami progress better, bude to lepsie ohladom vykonu, presunie sa 
         zodpovednost za vykreslovanie z prehliadaca na graficku kartu -->
-        <!-- <progress max="700" value="0"></progress> 
-        Nastavim sirku div elementu na 0% a potom po kazdom jednom scrolle vypocitam, kolko percent zo stranky som prescrolloval
+        <progress max="700" value="0" class="shittier"></progress>
+
+        <!-- Nastavim sirku div elementu na 0% a potom po kazdom jednom scrolle vypocitam, kolko percent zo stranky som prescrolloval
         a na tlko percent nastavim sirku tomu divu
-        -->
+        !!! chcem pouzit css transform na zmenu velkosti tohoto divu: https://www.html5rocks.com/en/tutorials/speed/high-performance-animations/
+        chcem sa zbavit paint flashu po kazdom jednom scrolle. Chcem poslat view grafickej karte, nech si ho natahuje ako zuvacku
+
+        Chcem nastavit div elementu scale: transform: scale(n) -> toto je parada, pojde to cez graficku kartu a vyrazne zvysim optimalizaciu -->
         <div class="progress better"></div>
 
         <br/>

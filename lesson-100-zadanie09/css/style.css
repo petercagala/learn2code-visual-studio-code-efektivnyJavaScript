@@ -22,7 +22,7 @@ input {
 }
 
 .progress {
-    width: 0%; 
+    width: 100%; 
 
     height: 32px;
     position: fixed;
@@ -37,4 +37,18 @@ input {
     border-radius: 2px;
     background-size: 63px 36px, 100% 100%, 100% 100%;
 
+}
+
+.better {
+    width: 100%; 
+    transform: scaleX(0.0);
+    /* Aby sa to natahoalo od lava do prava 
+    Je to ale parada, lebo v renderingu to uz nejde cez paintflashing*/
+    transform-origin: top left;
+}
+
+.shittier {
+    width: 0%;
+    top: 33px;
+    background: orange;
 }
