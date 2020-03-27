@@ -14,8 +14,21 @@ class ProgressIndicator {
             console.log("Position started storing in DB");
     
             // po kazdom scrolle simulujem volanie servera
-            this.setProgressIndicatorPossition(pageYOffset);
+             this.setProgressIndicatorPossition(pageYOffset);
         }, 1000);
+    
+       // Nastavime pocet pixelov o ktore som sa odscrolloval od vrchu stranky
+    //    progressBar.value = pageYOffset;
+
+        console.log(pageYOffset);
+    }
+
+    recalculateWithoutDebounce(pageYOffset) {
+         // tu by bol naozaj nejaky AJAXovy request, ktory by odoslal na server poziadavku na ulozenie pozicie
+        console.log("Position started storing in DB");
+    
+        // po kazdom scrolle simulujem volanie servera
+        this.setProgressIndicatorPossition(pageYOffset);
     
        // Nastavime pocet pixelov o ktore som sa odscrolloval od vrchu stranky
     //    progressBar.value = pageYOffset;
@@ -32,7 +45,7 @@ class ProgressIndicator {
 
     setProgressIndicatorPossition(progressIndicatorPossition) {
         let start = Date.now();
-        let stopTime = Math.floor(Math.random() * 10) + 10;
+        let stopTime = Math.floor(Math.random() * 40) + 40;
     
         /**
          * simulacia AJAX-oveho volania

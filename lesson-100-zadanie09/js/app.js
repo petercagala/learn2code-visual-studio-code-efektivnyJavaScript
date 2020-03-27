@@ -14,23 +14,40 @@ let ratioProgressBar;
 
 var keyCounter = 0;
 
+var scheduled = false;
+
 
 /**
  * window tam vobec nemusi byt, lebo je to globalny objekt. Ak nezadam window,
  * tak sa chytam objektu window
  */
 window.addEventListener('scroll', function scrollEvent(event) {
-    ratioProgressBar = (window.pageYOffset / documentHeight);
 
-    console.log(documentHeight, window.pageYOffset, Math.round(ratioProgressBar * 100) + '%');
+    // throttling: dusime kod
+    if(!scheduled) {
+        scheduled = true;
 
-    // Nastav percentualnu sirku progress baru
-    progressBarShit.style.width = (ratioProgressBar * 100) + "%";
-    //ale teraz cez tansform, aby sme sli cez graficku kartu, super pre optimalizaciu
-    progressBarSmart.style.transform = `scaleX(${ratioProgressBar})`;
+        setTimeout(() => {
+            scheduled = false;
+
+            ratioProgressBar = (window.pageYOffset / documentHeight);
+
+            console.log(documentHeight, window.pageYOffset, Math.round(ratioProgressBar * 100) + '%');
+        
+            // Nastav percentualnu sirku progress baru
+            progressBarShit.style.width = (ratioProgressBar * 100) + "%";
+            //ale teraz cez tansform, aby sme sli cez graficku kartu, super pre optimalizaciu
+            progressBarSmart.style.transform = `scaleX(${ratioProgressBar})`;
+        }, 100);
+    }
+
+
 
     //AJAX
      progressIndicator.recalculate(window.pageYOffset);
+
+     // Pri tomto ajaxovom volani sa neuplatne debounce, teda sa zavola ajaxove volanie po kazdom jednom scrolle
+    //  progressIndicator.recalculateWithoutDebounce(window.pageYOffset);
 });
 
 /**

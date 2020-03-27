@@ -45,6 +45,7 @@ input {
     /* Aby sa to natahoalo od lava do prava 
     Je to ale parada, lebo v renderingu to uz nejde cez paintflashing*/
     transform-origin: top left;
+    transition: transform 0.25s  ease;  
 }
 
 .shittier {
