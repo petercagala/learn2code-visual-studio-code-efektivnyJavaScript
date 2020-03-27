@@ -1,27 +1,26 @@
 'use strict';
 
-const toggleAnim = document.querySelector('.toggle-anim'),
-	  balls = document.getElementsByClassName('ball');
+// const startAnimationButton = document.getElementsByClassName(".toggle-anim");
+const startAnimationButton = document.querySelector(".toggle-anim"),
+	balls = document.getElementsByClassName("ball");
 
-let animating = false;
+let isAnimating = false;
 
+startAnimationButton.addEventListener('click', () => {
+	isAnimating = !isAnimating;
 
-toggleAnim.addEventListener('click', () => {
+	startAnimationButton.textContent = isAnimating ? "Stop Animation": "Start Animation";
 
-	animating = !animating;
-	toggleAnim.textContent = animating ? 'Stop Animation' : 'Start Animation';
-
-	for (const ball of balls) {
-		ball.className = animating ? 'ball ball-running' : 'ball';
+	for (const ballItem of balls) {
+		// ballItem.className = isAnimating? "ball ball-running-limp-around": "ball";
+		ballItem.className = isAnimating? "ball ball-running-run-around": "ball";
 	}
+})
 
-});
-
-
-// len aby sa poposuvali, aby si videl ze ich je tam kopa
-for (let i = 0; i < balls.length; i++) {
+for(let i = 0; i<balls.length; i++) {
 	const ball = balls[i];
 
-	ball.style.top  = i * 3 + 'px';
-	ball.style.left = i * 3 + 'px';
+	ball.style.top = i  + 'px';
+	ball.style.left = i + 'px';
 }
+
