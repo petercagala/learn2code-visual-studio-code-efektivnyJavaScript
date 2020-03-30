@@ -2,6 +2,16 @@
    palino likes to dance
    ========================================================================== */
 
+   /* Vsetky elementy li pod class super-test */
+.super-test {
+	font-size: 5px;
+}
+
+.super-test li {
+	display: inline-block;
+
+}
+
 .ball-zone {
 	position: relative;
 	min-height: 360px;
